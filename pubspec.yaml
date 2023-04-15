@@ -48,11 +48,14 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   wave_transition: ^0.0.6
   intl: ^0.17.0
+  audioplayers: ^0.19.1
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  page_transition: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +85,7 @@ flutter:
     - assets/ic_halaman_utama.png
     - assets/ic_myquran.png
     - assets/ic_juz.png
+    - assets/ic_halaman_doa.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

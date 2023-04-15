@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_quran/model/response_doa.dart';
+import 'package:my_quran/pages/baca_surat.dart';
+import 'package:my_quran/pages/doa.dart';
 import 'package:my_quran/pages/home.dart';
 import 'package:my_quran/pages/intro.dart';
+import 'package:my_quran/pages/uji.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +34,10 @@ class MyApp extends StatelessWidget {
       initialRoute: Intro.routingName.toString(),
       routes: {
         Intro.routingName.toString(): (context) => Intro(),
-        Home.routeName.toString(): (context) => Home()
+        Home.routeName.toString(): (context) => Home(),
+        MyWidget.routeName.toString(): (context) => MyWidget(),
+        PageDoa.routeName.toString(): (context) => PageDoa(),
+        BacaSurat.routeName.toString(): (context) => BacaSurat()
       },
     );
   }

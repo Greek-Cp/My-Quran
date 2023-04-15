@@ -29,9 +29,11 @@ class TextComponent {
     );
   }
 
-  static Widget TextTittleJuz(String name,
-      {Color? colors = ColorApp.colorPurpler,
-      FontWeight? fontWeight = FontWeight.bold}) {
+  static Widget TextTittleJuz(
+    String name, {
+    Color? colors = ColorApp.colorPurpler,
+    FontWeight? fontWeight = FontWeight.bold,
+  }) {
     return Text(
       "${name}",
       style: GoogleFonts.poppins(
@@ -44,14 +46,16 @@ class TextComponent {
 
   static Widget TextDescriptionJuz(String name,
       {Color? colors = ColorApp.colorGray,
-      FontWeight? fontWeight = FontWeight.normal}) {
+      FontWeight? fontWeight = FontWeight.normal,
+      FontStyle? fontStyle = FontStyle.normal}) {
     return Text(
       "$name",
       style: GoogleFonts.poppins(
           textStyle: TextStyle(
               color: colors,
               fontSize: size.sizeDescriptionJuz,
-              fontWeight: fontWeight)),
+              fontWeight: fontWeight,
+              fontStyle: fontStyle)),
     );
   }
 }
