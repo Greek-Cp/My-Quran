@@ -48,7 +48,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   wave_transition: ^0.0.6
   intl: ^0.17.0
-  audioplayers: ^0.19.1
+  audioplayers: ^4.0.1
 
 
 

@@ -6,6 +6,7 @@ import 'package:my_quran/model/controller_response.dart';
 import 'package:my_quran/model/response_surat.dart';
 import 'package:my_quran/utils/colors.dart';
 import 'package:my_quran/utils/size.dart';
+import 'package:provider/provider.dart';
 
 class BacaSurat extends StatefulWidget {
   static String? routeName = "/baca_surat";
@@ -23,13 +24,16 @@ class _BacaSuratState extends State<BacaSurat> {
         ControllerAPI.fetchDataDetailSurat(noSurat: nomorSurat.toString());
   }
 
-  Map? receiveData;
+  late ControllerAPI controllerAPI;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    receiveData = ModalRoute.of(context)?.settings.arguments as Map;
-    String namaSurat = receiveData?["nama_surat"];
-    nomorSurat = receiveData?["nomor_surat"];
+
+    controllerAPI = Provider.of<ControllerAPI>(context);
+
+    String namaSurat = controllerAPI.getNamaSurat;
+    nomorSurat = controllerAPI.getPilihSurat.toString();
     detailSurat =
         ControllerAPI.fetchDataDetailSurat(noSurat: nomorSurat.toString());
     return Scaffold(
@@ -173,6 +177,7 @@ class _BacaSuratState extends State<BacaSurat> {
     );
   }
 
+  late Source audioUrl;
   Widget WidgetSurat(
       {String? nomorAyat,
       String? ayat,
@@ -212,15 +217,8 @@ class _BacaSuratState extends State<BacaSurat> {
                     ),
                     onPressed: () async {
                       AudioPlayer audioPlayer = AudioPlayer();
-                      int result = await audioPlayer.play('${urlSuaraBacaan}');
-                      if (result == 1) {
-                        // success
-                        print("Succes Play");
-                        ;
-                      } else {
-                        print("Failed Play");
-                        // failed to play sound
-                      }
+                      audioUrl = UrlSource(urlSuaraBacaan.toString());
+                      audioPlayer.play(audioUrl);
                     },
                     color: ColorApp.colorPurpler,
                   ),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:bottom_bar_matu/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +17,7 @@ import 'package:my_quran/pages/item_list/list_juz.dart';
 import 'package:my_quran/utils/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   static String? routeName = "/home";
@@ -96,9 +98,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   double horizontalOffset = 50.0;
   int time = 375 + 100;
+  late ControllerAPI providerSurat;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    providerSurat = Provider.of<ControllerAPI>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -347,8 +352,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, BacaSurat.routeName.toString(),
-                    arguments: {"nama_surat": namaLatin, "nomor_surat": noJuz});
+                providerSurat.setSelectionSurat(noJuz.toInt());
+                providerSurat.setNamaSuratDiPilih(namaLatin.toString());
+                Navigator.pushNamed(context, BacaSurat.routeName.toString());
               },
               splashColor: ColorApp.colorPurpler,
               child: Row(
