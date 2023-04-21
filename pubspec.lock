@@ -206,14 +206,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  flutter_otp_text_field:
-    dependency: "direct main"
-    description:
-      name: flutter_otp_text_field
-      sha256: c9164ba391071fb9783698256ddbb9efc960cfed056d843db164711c65b1b114
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -336,22 +328,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  logging:
-    dependency: transitive
-    description:
-      name: logging
-      sha256: "04094f2eb032cbb06c6f6e8d3607edcfcb0455e2bb6cbc010cb01171dcb64e6d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
-  mailer:
-    dependency: "direct main"
-    description:
-      name: mailer
-      sha256: dae17f4c6a360de380fe6c3981f806fa8df69c94533bd6f347075e4f14417bf2
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   matcher:
     dependency: transitive
     description:
@@ -376,22 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      sha256: e4ff8e8564c03f255408decd16e7899da1733852a9110a58fe6d1b817684a63e
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.4"
-  motion_toast:
-    dependency: "direct main"
-    description:
-      name: motion_toast
-      sha256: f9acbad2edf0a57dd4c70c44e33d0a4694f04314dcc9476f1b14e424434c916e
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.6.6"
   nested:
     dependency: transitive
     description:
@@ -400,14 +360,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  otp_text_field:
-    dependency: "direct main"
-    description:
-      name: otp_text_field
-      sha256: "340b1ed135e1abe9fac0aaebe1c4e48147d95a3e29ecb03ae45ad63a7c28d65d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.3"
   page_transition:
     dependency: "direct main"
     description:

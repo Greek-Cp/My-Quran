@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_quran/model/controller_response.dart';
 import 'package:my_quran/model/response_doa.dart';
 import 'package:my_quran/pages/baca_surat.dart';
 import 'package:my_quran/pages/doa.dart';
 import 'package:my_quran/pages/home.dart';
 import 'package:my_quran/pages/intro.dart';
+import 'package:my_quran/pages/jadwal_sholat.dart';
 import 'package:my_quran/pages/uji.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,7 @@ import 'httpovveride.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
 }
 
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     return ChangeNotifierProvider<ControllerAPI>(
       create: (context) => ControllerAPI(),
       child: MaterialApp(
@@ -40,13 +44,14 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Intro.routingName.toString(),
+        initialRoute: JadwalSholat.routeName.toString(),
         routes: {
           Intro.routingName.toString(): (context) => Intro(),
           Home.routeName.toString(): (context) => Home(),
           MyWidget.routeName.toString(): (context) => MyWidget(),
           PageDoa.routeName.toString(): (context) => PageDoa(),
-          BacaSurat.routeName.toString(): (context) => BacaSurat()
+          BacaSurat.routeName.toString(): (context) => BacaSurat(),
+          JadwalSholat.routeName.toString(): (context) => JadwalSholat()
         },
       ),
     );
