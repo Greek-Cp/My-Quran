@@ -32,7 +32,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   StreamController<DateTime>? _streamController;
   final GlobalKey<State<Home>> _animationLimiterKey = GlobalKey();
   late AnimationController _controller;
-
   late Animation<double> _FadeAnimationImageSurat;
   late Animation<Offset> _PositionAnimationImage;
 

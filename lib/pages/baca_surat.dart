@@ -14,9 +14,11 @@ class BacaSurat extends StatefulWidget {
   State<BacaSurat> createState() => _BacaSuratState();
 }
 
-class _BacaSuratState extends State<BacaSurat> {
+class _BacaSuratState extends State<BacaSurat> with TickerProviderStateMixin {
   late Future<DetailSurat> detailSurat;
   String? nomorSurat;
+
+  late AudioPlayer audioPlayer;
 
   @override
   void initState() {
@@ -29,9 +31,8 @@ class _BacaSuratState extends State<BacaSurat> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
+    audioPlayer = AudioPlayer();
     controllerAPI = Provider.of<ControllerAPI>(context);
-
     String namaSurat = controllerAPI.getNamaSurat;
     nomorSurat = controllerAPI.getPilihSurat.toString();
     detailSurat =
@@ -122,12 +123,12 @@ class _BacaSuratState extends State<BacaSurat> {
 
   static Widget TextTittleJuz(String name,
       {Color? colors = ColorApp.colorPurpler,
-      FontWeight? fontWeight = FontWeight.bold,
-      double size = 18}) {
+      FontWeight? fontWeight = FontWeight.normal,
+      double size = 10}) {
     return Text(
       "${name}",
       textAlign: TextAlign.end,
-      style: GoogleFonts.ibmPlexSansArabic(
+      style: GoogleFonts.notoSansArabic(
           textStyle: TextStyle(
               color: colors, fontWeight: fontWeight, fontSize: size + 17)),
     );
@@ -154,7 +155,7 @@ class _BacaSuratState extends State<BacaSurat> {
   }) {
     return Text(
       "${name}",
-      style: GoogleFonts.dmSans(
+      style: GoogleFonts.notoSansArabic(
           textStyle: TextStyle(
               color: colors,
               fontWeight: FontWeight.normal,
@@ -184,6 +185,10 @@ class _BacaSuratState extends State<BacaSurat> {
       String? latin,
       String? arti,
       String? urlSuaraBacaan}) {
+    bool isPlay = false;
+    late AnimationController animationControllerPlayButton;
+    animationControllerPlayButton =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,16 +216,36 @@ class _BacaSuratState extends State<BacaSurat> {
                     onPressed: () {},
                     color: ColorApp.colorPurpler,
                   ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.play_arrow_outlined,
-                    ),
-                    onPressed: () async {
-                      AudioPlayer audioPlayer = AudioPlayer();
-                      audioUrl = UrlSource(urlSuaraBacaan.toString());
-                      audioPlayer.play(audioUrl);
+                  GestureDetector(
+                    key: ValueKey(nomorAyat),
+                    onTap: () async {
+                      if (isPlay == false) {
+                        isPlay = true;
+                        audioUrl = UrlSource(urlSuaraBacaan.toString());
+                        audioPlayer.play(audioUrl);
+                        animationControllerPlayButton.forward();
+                        audioPlayer.onPlayerComplete.listen((event) {
+                          audioPlayer.stop();
+                          animationControllerPlayButton.reverse();
+                        });
+                        audioPlayer.onPlayerStateChanged.listen((event) {
+                          if (event == PlayerState.stopped) {
+                            animationControllerPlayButton.reverse();
+                          } else if (event == PlayerState.paused) {
+                            animationControllerPlayButton.reverse();
+                          }
+                        });
+                      } else if (isPlay == true) {
+                        isPlay = false;
+                        audioPlayer.pause();
+                        animationControllerPlayButton.reverse();
+                      }
                     },
-                    color: ColorApp.colorPurpler,
+                    child: AnimatedIcon(
+                      icon: AnimatedIcons.play_pause,
+                      progress: animationControllerPlayButton,
+                      color: ColorApp.colorPurpler,
+                    ),
                   ),
                   Icon(Icons.bookmark_outline, color: ColorApp.colorPurpler)
                 ],
